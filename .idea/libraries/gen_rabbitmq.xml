@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="gen/rabbitmq">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/generator/lib/rabbitmq" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/generator/lib/rabbitmq" recursive="false" />
+  </library>
+</component>

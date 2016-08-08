@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="op/locationservice-1.0">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/orderpicker/lib/be.kdg/locationservice-1.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

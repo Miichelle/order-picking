@@ -1,0 +1,16 @@
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+3283 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+3017 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+1    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+4665 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+21611 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+7355 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+9373 [main] INFO  orderpicker.OrderpickerTest  - Shutting down
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+0    [main] INFO  orderpicker.OrderpickerTest  - Booting communications
+[INFO ] 2016-08-08 22:59:24 OrderpickerTest:16 - Booting communications
+[INFO ] 2016-08-08 22:59:28 OrderpickerTest:26 - Shutting down
