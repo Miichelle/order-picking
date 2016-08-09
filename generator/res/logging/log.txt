@@ -1,0 +1,4 @@
+[INFO ] 2016-08-08 23:18:13 GeneratorTest:16 - Booting communications
+[INFO ] 2016-08-08 23:18:18 GeneratorTest:26 - Shutting down
+[INFO ] 2016-08-09 00:21:03 GeneratorTest:16 - Booting communications
+[INFO ] 2016-08-09 00:21:07 GeneratorTest:26 - Shutting down

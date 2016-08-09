@@ -1,7 +1,5 @@
-package generator.adapter.conversion;
+package generator.serialization;
 
-import generator.exceptions.ConversionException;
-import generator.interfaces.ConversionService;
 import org.apache.log4j.Logger;
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.MappingException;
@@ -17,7 +15,7 @@ import java.io.*;
  * Datum: 3-8-2016
  * Time: 17:28
  */
-public class XMLConverter implements ConversionService {
+public class XMLConverter implements Serializer {
     private final String CONVERTOR_TYPE="XML";
     private final Logger logger = Logger.getLogger(XMLConverter.class);
 
@@ -25,7 +23,7 @@ public class XMLConverter implements ConversionService {
     public String getType() {return CONVERTOR_TYPE; }
 
     @Override
-    public String convertTo(Object o) throws ConversionException {
+    public String serialize(Object o) throws SerializationException {
        Writer writer = new StringWriter();
         try {
             Mapping mapping = new Mapping();
@@ -40,13 +38,13 @@ public class XMLConverter implements ConversionService {
         } catch (MarshalException | ValidationException | MappingException | IOException e) {
             String message = "Error during conversion from object to XML string";
             logger.error(message);
-            throw new ConversionException(message, e);
+            throw new SerializationException(message, e);
         }
         return writer.toString();
     }
 
     @Override
-    public Object convertFrom(String s) throws ConversionException {
+    public Object deserialize(String s) throws SerializationException {
         Object o;
         BufferedReader reader = new BufferedReader(new StringReader(s));
         org.exolab.castor.xml.Unmarshaller unmarshaller = new org.exolab.castor.xml.Unmarshaller();
@@ -55,7 +53,7 @@ public class XMLConverter implements ConversionService {
         } catch (MarshalException | ValidationException e) {
             String message = "Error during conversion from XML string to object";
             logger.error(message);
-            throw new ConversionException(message, e);
+            throw new SerializationException(message, e);
         }
         return o;
     }

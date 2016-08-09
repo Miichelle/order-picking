@@ -1,4 +1,4 @@
-package generator.models;
+package generator.generation.order;
 
 /**
  * Michelle Beckers
@@ -14,19 +14,19 @@ public class Item {
         this.amount = amount;
     }
 
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
-    }
-
     public int getAmount() {
-        return amount;
+        return this.amount;
+    }
+
+    public int getProductId() {
+        return this.productId;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 }

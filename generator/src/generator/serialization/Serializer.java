@@ -1,30 +1,28 @@
-package generator.interfaces;
-
-import generator.exceptions.ConversionException;
+package generator.serialization;
 
 /**
  * Michelle Beckers
  * Datum: 3-8-2016
  * Time: 16:20
  */
-public interface ConversionService {
-    /***
+public interface Serializer {
+    /**
      * Returns the name of the Conversion Service (e.g. XML)
      * @return
      */
     String getType();
 
-    /***
+    /**
      * Converts an {@Object} to a {@String} from the conversion type
      * @return {@String}
-     * @throws ConversionException
+     * @throws SerializationException
      */
-    String convertTo(Object o) throws ConversionException;
+    String serialize(Object o) throws SerializationException;
 
-    /***
+    /**
      * Converts a conversion {@String} to an {@Object} wich requires a Class to convert to
      * @return {@Object}
-     * @throws ConversionException
+     * @throws SerializationException
      */
-    Object convertFrom(String s) throws ConversionException;
+    Object deserialize(String s) throws SerializationException;
 }
