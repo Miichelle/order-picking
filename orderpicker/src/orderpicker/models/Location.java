@@ -6,11 +6,10 @@ package orderpicker.models;
  * Time: 18:05
  */
 public class Location {
-
-    private int productId;
-    private String storageRoom;
     private int hallway;
+    private int productId;
     private int rack;
+    private String storageRoom;
 
     public Location(int productId, String storageRoom, int hallway, int rack) {
         this.productId = productId;
@@ -19,35 +18,36 @@ public class Location {
         this.rack = rack;
     }
 
+    public int getHallway() {
+        return hallway;
+    }
     public int getProductId() {
         return productId;
     }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public int getRack() {
+        return rack;
     }
-
     public String getStorageRoom() {
         return storageRoom;
-    }
-
-    public void setStorageRoom(String storageRoom) {
-        this.storageRoom = storageRoom;
-    }
-
-    public int getHallway() {
-        return hallway;
     }
 
     public void setHallway(int hallway) {
         this.hallway = hallway;
     }
-
-    public int getRack() {
-        return rack;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
-
     public void setRack(int rack) {
         this.rack = rack;
     }
+    public void setStorageRoom(String storageRoom) {
+        this.storageRoom = storageRoom;
+    }
+
+
+
+
+
+
+
 }

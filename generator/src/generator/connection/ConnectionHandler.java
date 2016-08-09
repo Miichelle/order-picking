@@ -6,6 +6,7 @@ package generator.connection;
  * Time: 16:20
  */
 public interface ConnectionHandler {
+    //TODO: algemene handler voor het openen en sluiten van connectie (kan zijn dat deze niet voor elke broker nodig is)
     void close() throws ConnectionException;
 
     void open() throws ConnectionException;

@@ -6,11 +6,5 @@ package generator.amqp.order.controller;
  * Time: 23:23
  */
 public class OrderController {
-    private int nextId;
 
-    public OrderController(int startingId) {
-        this.nextId = startingId;
-    }
-
-    public int getNextId() { return this.nextId; }
 }

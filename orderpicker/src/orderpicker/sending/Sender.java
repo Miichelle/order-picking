@@ -1,4 +1,4 @@
-package generator.sending;
+package orderpicker.sending;
 
 /**
  * Michelle Beckers

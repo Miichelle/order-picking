@@ -1,4 +1,4 @@
-package orderpicker.exceptions;
+package orderpicker.location;
 
 /**
  * Michelle Beckers

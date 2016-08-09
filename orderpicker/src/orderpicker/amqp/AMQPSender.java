@@ -1,9 +1,9 @@
-package generator.amqp;
+package orderpicker.amqp;
 
-import generator.connection.ConnectionException;
-import generator.sending.SenderException;
-import generator.connection.ConnectionHandler;
-import generator.sending.Sender;
+import orderpicker.connection.ConnectionException;
+import orderpicker.connection.ConnectionHandler;
+import orderpicker.sending.Sender;
+import orderpicker.sending.SenderException;
 
 /**
  * Michelle Beckers

@@ -1,6 +1,5 @@
 package generator.serialization;
 
-import org.apache.log4j.Logger;
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.mapping.MappingException;
 import org.exolab.castor.xml.MarshalException;
@@ -15,9 +14,8 @@ import java.io.*;
  * Datum: 3-8-2016
  * Time: 17:28
  */
-public class XMLConverter implements Serializer {
-    private final String CONVERTOR_TYPE="XML";
-    private final Logger logger = Logger.getLogger(XMLConverter.class);
+public class XMLSerializer implements Serializer {
+    private final String CONVERTOR_TYPE="XMLSerializer";
 
     @Override
     public String getType() {return CONVERTOR_TYPE; }
@@ -36,8 +34,7 @@ public class XMLConverter implements Serializer {
             marshaller.setWriter(writer);
             marshaller.marshal(o);
         } catch (MarshalException | ValidationException | MappingException | IOException e) {
-            String message = "Error during conversion from object to XML string";
-            logger.error(message);
+            String message = "Error during conversion from object to XMLSerializer string";
             throw new SerializationException(message, e);
         }
         return writer.toString();
@@ -51,8 +48,7 @@ public class XMLConverter implements Serializer {
         try {
             o = unmarshaller.unmarshal(reader);
         } catch (MarshalException | ValidationException e) {
-            String message = "Error during conversion from XML string to object";
-            logger.error(message);
+            String message = "Error during conversion from XMLSerializer string to object";
             throw new SerializationException(message, e);
         }
         return o;

@@ -1,10 +1,10 @@
-package generator.amqp.rabbitmq;
+package orderpicker.amqp.rabbitmq;
 
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
-import generator.connection.ConnectionException;
-import generator.connection.ConnectionHandler;
+import orderpicker.connection.ConnectionException;
+import orderpicker.connection.ConnectionHandler;
 
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
@@ -14,7 +14,6 @@ import java.util.concurrent.TimeoutException;
  * Datum: 9-8-2016
  * Time: 00:12
  */
-//TODO: ERRORMSG aanpassen !!
 public class RabbitMQConnectionHandler implements ConnectionHandler {
     private final String host;
     private final String queue;
@@ -32,7 +31,6 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
     public final String getHost() { return this.host; }
     public final String getQueue() { return this.queue; }
 
-    //TODO:specifiek connectie openen en sluiten voor RABBITMQ
     @Override
     public void close() throws ConnectionException {
         try {

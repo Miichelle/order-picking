@@ -1,13 +1,13 @@
-package generator.amqp.rabbitmq.order;
+package orderpicker.amqp.rabbitmq.orderItemLocation;
 
 import com.rabbitmq.client.Channel;
-import generator.amqp.AMQPSender;
-import generator.amqp.order.dto.OrderDto;
-import generator.amqp.rabbitmq.RabbitMQConnectionHandler;
-import generator.connection.ConnectionException;
-import generator.sending.SenderException;
-import generator.serialization.SerializationException;
-import generator.serialization.XMLSerializer;
+import orderpicker.amqp.AMQPSender;
+import orderpicker.amqp.dto.OrderDto;
+import orderpicker.amqp.rabbitmq.RabbitMQConnectionHandler;
+import orderpicker.connection.ConnectionException;
+import orderpicker.sending.SenderException;
+import orderpicker.serialization.SerializationException;
+import orderpicker.serialization.XMLSerializer;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -46,6 +46,7 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
             // make sure the queue exists
             channel.queueDeclare(queue, false, false, false, null);
         } catch (IOException e) {
+            //TODO: msg aanpassen
             String msg = "Something went wrong trying to declare the queue for channel=%s with RabbitMQ host=%s";
             msg = String.format(msg, host, channel);
             throw new SenderException(msg, e);
@@ -61,7 +62,7 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
 
         try {
             channel.basicPublish("", queue, null, xml.getBytes());
-            logger.info("Message sent");
+           logger.info("message sent");
         } catch (IOException e) {
             String msg = "Something went wrong trying to send a message to the queue for channel=%s " +
                     "with RabbitMQ host=%s";

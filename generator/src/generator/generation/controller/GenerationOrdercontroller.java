@@ -6,4 +6,11 @@ package generator.generation.controller;
  * Time: 02:19
  */
 public class GenerationOrdercontroller {
+    private int nextId;
+
+    public GenerationOrdercontroller(int startingId) {
+        this.nextId = startingId;
+    }
+
+    public int getNextId() { return this.nextId; }
 }

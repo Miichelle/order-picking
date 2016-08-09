@@ -1,4 +1,4 @@
-package generator.serialization;
+package orderpicker.serialization;
 
 /**
  * Michelle Beckers
@@ -7,7 +7,7 @@ package generator.serialization;
  */
 public interface Serializer {
     /**
-     * Returns the name of the Conversion Service (e.g. XMLSerializer)
+     * Returns the name of the orderpicker.serialization (e.g. XML)
      * @return
      */
     String getType();

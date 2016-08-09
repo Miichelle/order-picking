@@ -1,11 +1,10 @@
-package generator.amqp.order.dto;
+package orderpicker.amqp.dto;
 
 /**
  * Michelle Beckers
  * Datum: 9-8-2016
  * Time: 00:51
  */
-//TODO: Dto voor seperation of concerns. model -> puur om code intern te houden, dto voor enkel wat naar buiten moet
 public class ItemDto {
     private int productId;
     private int amount;
