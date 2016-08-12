@@ -1,0 +1,24 @@
+[INFO ] 2016-08-12 23:59:28 GeneratorTest:14 - Booting communications
+[INFO ] 2016-08-13 00:00:07 GeneratorTest:14 - Booting communications
+[INFO ] 2016-08-13 00:00:25 GeneratorTest:14 - Booting communications
+[INFO ] 2016-08-13 00:14:09 GeneratorTest:27 - Booting communications
+[FATAL] 2016-08-13 00:14:30 GeneratorTest:52 - Something went wrong trying to setup the connection with RabbitMQ host=test
+[INFO ] 2016-08-13 00:15:33 GeneratorTest:27 - Booting communications
+[INFO ] 2016-08-13 00:15:51 GeneratorTest:74 - Shutting down
+[INFO ] 2016-08-13 00:18:09 GeneratorTest:27 - Booting communications
+[INFO ] 2016-08-13 00:18:19 GeneratorTest:74 - Shutting down
+[INFO ] 2016-08-13 00:29:16 GeneratorTest:27 - Booting communications
+[INFO ] 2016-08-13 00:45:14 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:45:19 GeneratorTest:75 - Shutting down
+[INFO ] 2016-08-13 00:47:02 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:47:14 GeneratorTest:75 - Shutting down
+[INFO ] 2016-08-13 00:50:17 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:51:15 GeneratorTest:75 - Shutting down
+[INFO ] 2016-08-13 00:56:22 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:57:55 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:58:15 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:58:56 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 00:59:06 GeneratorTest:77 - Shutting down
+[INFO ] 2016-08-13 00:59:25 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 01:00:44 GeneratorTest:26 - Booting communications
+[INFO ] 2016-08-13 01:00:52 GeneratorTest:76 - Shutting down

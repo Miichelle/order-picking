@@ -18,7 +18,7 @@ public class LocationApi implements LocationService {
 
 
     @Override
-    public void Initialize() {
+    public void initialize() {
         this.service = new LocationServiceProxy();
     }
 

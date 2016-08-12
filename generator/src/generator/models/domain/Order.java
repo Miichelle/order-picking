@@ -1,4 +1,4 @@
-package generator.generation.order;
+package generator.models.domain;
 
 
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ public class Order {
     public Order(int customerId, List<Item> items, int orderId, int price, LocalDateTime timestamp) {
         this.customerId = customerId;
         this.items = items;
-        this.orderId = 100000;
+        this.orderId = orderId;
         this.price = price;
         this.timestamp = timestamp;
     }

@@ -12,7 +12,7 @@ public interface LocationService {
     /***
      * Initializes the Service
      */
-    void Initialize();
+    void initialize();
 
     /**
      * A service which returns information about a given ship

@@ -1,4 +1,4 @@
-package generator.amqp.order.dto;
+package generator.models.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;

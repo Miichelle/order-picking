@@ -1,15 +1,16 @@
-package generator.generation.order;
+package generator.models.dto;
 
 /**
  * Michelle Beckers
- * Datum: 3-8-2016
- * Time: 17:22
+ * Datum: 9-8-2016
+ * Time: 00:51
  */
-public class Item {
+//TODO: Dto voor seperation of concerns. model -> puur om code intern te houden, order voor enkel wat naar buiten moet
+public class ItemDto {
     private int productId;
     private int amount;
 
-    public Item(int productId, int amount) {
+    public ItemDto(int productId, int amount) {
         this.productId = productId;
         this.amount = amount;
     }
