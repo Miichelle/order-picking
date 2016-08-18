@@ -1,4 +1,4 @@
-package generator.consumation;
+package orderpicker.consumation;
 
 /**
  * Michelle Beckers

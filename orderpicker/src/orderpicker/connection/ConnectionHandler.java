@@ -1,5 +1,7 @@
 package orderpicker.connection;
 
+import orderpicker.receiving.ReceiverException;
+
 /**
  * Michelle Beckers
  * Datum: 2-8-2016
@@ -8,5 +10,5 @@ package orderpicker.connection;
 public interface ConnectionHandler {
     void close() throws ConnectionException;
 
-    void open() throws ConnectionException;
+    void open() throws ConnectionException, ReceiverException;
 }

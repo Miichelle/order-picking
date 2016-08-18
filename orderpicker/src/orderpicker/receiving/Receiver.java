@@ -7,5 +7,5 @@ package orderpicker.receiving;
  */
 public interface Receiver<T> {
 
-    void receive(T message) throws ReceiverException;
+    void receive() throws ReceiverException;
 }

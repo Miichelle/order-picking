@@ -3,10 +3,10 @@ package generator.amqp.rabbitmq;
 import com.rabbitmq.client.Channel;
 import generator.amqp.AMQPSender;
 import generator.connection.ConnectionException;
-import generator.sending.SenderException;
 import generator.models.dto.OrderDto;
+import generator.sending.SenderException;
+import generator.serialization.OrderDtoJSONSerializer;
 import generator.serialization.SerializationException;
-import generator.serialization.XMLSerializer;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -51,16 +51,17 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
             throw new SenderException(msg, e);
         }
 
-        XMLSerializer xmlSerializer = new XMLSerializer();
-        String xml = "";
+        OrderDtoJSONSerializer orderDtoJSONSerializer = new OrderDtoJSONSerializer();
+        String json = "";
         try {
-            xml = xmlSerializer.serialize(message);
+            json = orderDtoJSONSerializer.serialize(message);
         } catch (SerializationException e) {
             logger.error("Error during conversion from object to XML");
         }
 
         try {
-            channel.basicPublish("", queue, null, xml.getBytes());
+            channel.basicPublish("", queue, null, json.getBytes());
+            System.out.println(json);
             logger.info("Message sent");
         } catch (IOException e) {
             String msg = "Something went wrong trying to send a message to the queue for channel=%s " +

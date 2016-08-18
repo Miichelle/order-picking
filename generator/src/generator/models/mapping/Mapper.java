@@ -16,9 +16,9 @@ import java.util.List;
  */
 public class Mapper {
     public static OrderDto map(Order order) {
-        final int customerId = order.getCustomerId();
+        final int customerId = order.getCustomerid();
         final List<ItemDto> items = map(order.getItems());
-        final int orderId = order.getOrderId();
+        final int orderId = order.getOrderid();
         final int price = order.getPrice();
         final LocalDateTime timestamp = order.getTimestamp();
 
@@ -26,7 +26,7 @@ public class Mapper {
     }
 
     public static ItemDto map(Item item) {
-        final int productId = item.getProductId();
+        final int productId = item.getProductid();
         final int amount = item.getAmount();
 
         return new ItemDto(productId, amount);

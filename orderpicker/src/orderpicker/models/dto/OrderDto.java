@@ -1,4 +1,4 @@
-package orderpicker.amqp.dto;
+package orderpicker.models.dto;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,28 +9,22 @@ import java.util.List;
  * Time: 00:47
  */
 public class OrderDto {
-    private int customerId;
+    private int customerid;
     private List<ItemDto> items;
-    private int orderId;
+    private int orderid;
     private int price;
     private LocalDateTime timestamp;
 
-    public OrderDto(int customerId, List<ItemDto> items, int orderId, int price, LocalDateTime timestamp) {
-        this.customerId = customerId;
-        this.items = items;
-        this.orderId = 100000;
-        this.price = price;
-        this.timestamp = timestamp;
-    }
+    public OrderDto() {}
 
-    public int getCustomerId() {
-        return customerId;
+    public int getCustomerid() {
+        return customerid;
     }
     public List<ItemDto> getItems() {
         return items;
     }
-    public int getOrderId() {
-        return orderId;
+    public int getOrderid() {
+        return orderid;
     }
     public int getPrice() {
         return price;
@@ -39,14 +33,14 @@ public class OrderDto {
         return timestamp;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomerid(int customerid) {
+        this.customerid = customerid;
     }
     public void setItems(List<ItemDto> items) {
         this.items = items;
     }
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
     }
     public void setPrice(int price) {
         this.price = price;

@@ -1,4 +1,4 @@
-package generator.models.domain;
+package orderpicker.models.domain;
 
 
 import java.time.LocalDateTime;

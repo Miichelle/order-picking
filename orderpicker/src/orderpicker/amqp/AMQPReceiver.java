@@ -16,8 +16,8 @@ public interface AMQPReceiver<T> extends Receiver<T>, ConnectionHandler {
     void close() throws ConnectionException;
 
     @Override
-    void open() throws ConnectionException;
+    void open() throws ConnectionException, ReceiverException;
 
     @Override
-    void receive(T message) throws ReceiverException;
+    void receive() throws ReceiverException;
 }

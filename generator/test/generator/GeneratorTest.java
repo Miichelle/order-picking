@@ -30,11 +30,11 @@ public class GeneratorTest {
         final List<Integer> customerIds = Arrays.asList(1000000,1000001,1000003,1000004,1000005,1000006,1000007,1000008,1000010);
         final List<Integer> productIds = Arrays.asList(1000045, 1000074, 1000655, 1000041, 1025601);
 
-        final double minimumDelay = 500.0;
-        final double maximumDelay = 1500.0;
+        final int minimumDelay = 500;
+        final int maximumDelay = 1500;
 
-        final double minimumPrice = 1.5;
-        final double maximumPrice = 10.0;
+        final int minimumPrice = 1;
+        final int maximumPrice = 10;
 
         final int minimumItemAmount = 1;
         final int maximumItemAmount = 8;

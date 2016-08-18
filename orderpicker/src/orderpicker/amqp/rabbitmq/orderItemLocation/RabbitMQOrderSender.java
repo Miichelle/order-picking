@@ -2,12 +2,12 @@ package orderpicker.amqp.rabbitmq.orderItemLocation;
 
 import com.rabbitmq.client.Channel;
 import orderpicker.amqp.AMQPSender;
-import orderpicker.amqp.dto.OrderDto;
 import orderpicker.amqp.rabbitmq.RabbitMQConnectionHandler;
 import orderpicker.connection.ConnectionException;
+import orderpicker.models.dto.OrderDto;
 import orderpicker.sending.SenderException;
+import orderpicker.serialization.OrderDtoJSONSerializer;
 import orderpicker.serialization.SerializationException;
-import orderpicker.serialization.XMLSerializer;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -17,7 +17,7 @@ import java.io.IOException;
  * Datum: 9-8-2016
  * Time: 00:46
  */
-//TODO: 1 sender per model ivm type (in dit geval maar 1 nodig nl enkel order)
+//TODO: 1 sender per model ivm type (in dit geval maar 1 nodig nl enkel Order)
 public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
     private RabbitMQConnectionHandler connectionHandler;
     private final Logger logger = Logger.getLogger(RabbitMQOrderSender.class);
@@ -52,7 +52,7 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
             throw new SenderException(msg, e);
         }
 
-        XMLSerializer xmlSerializer = new XMLSerializer();
+        OrderDtoJSONSerializer xmlSerializer = new OrderDtoJSONSerializer();
         String xml = "";
         try {
             xml = xmlSerializer.serialize(message);

@@ -1,21 +1,21 @@
-package orderpicker.models;
+package orderpicker.models.dto;
 
 /**
  * Michelle Beckers
- * Datum: 3-8-2016
- * Time: 18:05
+ * Datum: 16-8-2016
+ * Time: 13:54
  */
-public class Location {
+public class LocationDto {
     private int hallway;
     private int productId;
     private int rack;
     private String storageRoom;
 
-    public Location(int productId, String storageRoom, int hallway, int rack) {
-        this.productId = productId;
-        this.storageRoom = storageRoom;
+    public LocationDto(int hallway, int productId, int rack, String storageRoom) {
         this.hallway = hallway;
+        this.productId = productId;
         this.rack = rack;
+        this.storageRoom = storageRoom;
     }
 
     public int getHallway() {
@@ -43,11 +43,4 @@ public class Location {
     public void setStorageRoom(String storageRoom) {
         this.storageRoom = storageRoom;
     }
-
-
-
-
-
-
-
 }

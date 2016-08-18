@@ -1,4 +1,4 @@
-package generator.models.domain;
+package orderpicker.models.domain;
 
 /**
  * Michelle Beckers

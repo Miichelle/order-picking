@@ -10,6 +10,8 @@ public class ItemDto {
     private int productId;
     private int amount;
 
+    public ItemDto() {}
+
     public ItemDto(int productId, int amount) {
         this.productId = productId;
         this.amount = amount;

@@ -15,6 +15,8 @@ public class OrderDto {
     private int price;
     private LocalDateTime timestamp;
 
+    public OrderDto() {}
+
     public OrderDto(int customerId, List<ItemDto> items, int orderId, int price, LocalDateTime timestamp) {
         this.customerId = customerId;
         this.items = items;
@@ -24,11 +26,9 @@ public class OrderDto {
     }
 
     public int getCustomerId() {
-        return customerId;
+        return this.customerId;
     }
-    public List<ItemDto> getItems() {
-        return items;
-    }
+    public List<ItemDto> getItems() { return this.items; }
     public int getOrderId() {
         return orderId;
     }

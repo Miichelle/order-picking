@@ -5,24 +5,18 @@ package orderpicker.serialization;
  * Datum: 3-8-2016
  * Time: 16:20
  */
-public interface Serializer {
-    /**
-     * Returns the name of the orderpicker.serialization (e.g. XML)
-     * @return
-     */
-    String getType();
-
+public interface Serializer<T> {
     /**
      * Converts an {@Object} to a {@String} from the conversion type
      * @return {@String}
      * @throws SerializationException
      */
-    String serialize(Object o) throws SerializationException;
+    String serialize(T dto) throws SerializationException;
 
     /**
      * Converts a conversion {@String} to an {@Object} wich requires a Class to convert to
      * @return {@Object}
      * @throws SerializationException
      */
-    Object deserialize(String s) throws SerializationException;
+    T deserialize(String json) throws SerializationException;
 }
