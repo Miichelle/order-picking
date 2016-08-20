@@ -23,20 +23,25 @@ public class LocationCache implements Cache<Integer, Location> {
 
     @Override
     public void cache(Integer key, Location value, long duration) {
+        //TODO:  nog niet in cache
         if (!this.isCached(key)) {
+            //toDO: voeg dan toe aan cash
             this.locations.put(key, value);
         }
 
+        //TODO: als nog geen timer op staat
         if (!this.isScheduled(key)) {
             Timer timer = new Timer();
 
             TimerTask task = new TimerTask() {
                 @Override
+                //TODO: indien afgelopen maak cacheveld leeg
                 public void run() {
                     LocationCache.this.clear(key);
                 }
             };
 
+            //TODO: voeg schema toe en voeg dan toe aan timers
             timer.schedule(task, duration);
             this.timers.put(key, timer);
         }
@@ -44,6 +49,7 @@ public class LocationCache implements Cache<Integer, Location> {
 
     @Override
     public void clear(Integer key) {
+        //TODO: verwijder locatievalue uit de cache en verwijder de timer erop
         this.locations.remove(key);
         this.timers.remove(key);
     }

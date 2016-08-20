@@ -25,7 +25,6 @@ public class Item {
     public int getAmount() {
         return this.amount;
     }
-
     public int getProductid() {
         return this.productid;
     }
@@ -33,7 +32,6 @@ public class Item {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
     public void setProductid(int productid) {
         this.productid = productid;
     }

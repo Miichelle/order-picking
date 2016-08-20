@@ -33,6 +33,9 @@ public class GeneratorTest {
         final int minimumDelay = 500;
         final int maximumDelay = 1500;
 
+        final int minimumItemsSize = 1;
+        final int maximumItemsSize = 5;
+
         final int minimumPrice = 1;
         final int maximumPrice = 10;
 
@@ -56,6 +59,7 @@ public class GeneratorTest {
                 consumer,
                 customerIds, productIds,
                 minimumDelay, maximumDelay,
+                minimumItemsSize, maximumItemsSize,
                 minimumPrice, maximumPrice,
                 minimumItemAmount, maximumItemAmount,
                 firstOrderId
@@ -69,7 +73,7 @@ public class GeneratorTest {
             final Scanner scanner = new Scanner(System.in);
             scanner.nextLine();
         } catch (Exception e) {
-            // do nothing, you just ended the program manually
+            // do nothing, you just end the program manually
         }
 
         generator.setGenerate(false);

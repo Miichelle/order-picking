@@ -60,7 +60,7 @@ public class Order {
     public String toString() {
         return "Order:  " +
                 "customerid=" + customerid +
-                ", items=" + items +
+                ", items=" + items.size() + " " + items +
                 ", orderid=" + orderid +
                 ", price=" + price +
                 ", timestamp=" + timestamp +

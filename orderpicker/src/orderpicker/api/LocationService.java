@@ -6,7 +6,7 @@ import orderpicker.cache.LocationCache;
 import orderpicker.models.domain.Location;
 import orderpicker.models.dto.LocationDto;
 import orderpicker.models.mapping.Mapper;
-import orderpicker.serialization.LocationDtoJSONSerializer;
+import orderpicker.serialization.JSONSerializer;
 import orderpicker.serialization.SerializationException;
 import orderpicker.serialization.Serializer;
 import org.apache.log4j.Logger;
@@ -19,18 +19,26 @@ import java.io.IOException;
  * Time: 18:06
  */
 public class LocationService implements ApiService<Location> {
-    private Cache<Integer, Location> locationCache;
-
-    private LocationServiceProxy service;
-    private Serializer<LocationDto> locationDtoSerializer;
-    private String baseUrl;
-
     private final Logger logger = Logger.getLogger(LocationService.class);
+
+    private int duration;
+    private String baseUrl;
+    private Cache<Integer, Location> locationCache;
+    private Serializer<LocationDto> locationDtoSerializer;
+    private LocationServiceProxy service;
+
 
     public LocationService() {
         this.baseUrl = "www.services4se3.com/locationservice";
         this.locationCache = new LocationCache();
-        this.locationDtoSerializer = new LocationDtoJSONSerializer();
+        this.locationDtoSerializer = new JSONSerializer<>(LocationDto.class);
+        this.service = new LocationServiceProxy();
+    }
+
+    public LocationService(int duration) {
+        this.baseUrl = "www.services4se3.com/locationservice";
+        this.locationCache = new LocationCache();
+        this.locationDtoSerializer = new JSONSerializer<>(LocationDto.class);
         this.service = new LocationServiceProxy();
     }
 
@@ -51,12 +59,11 @@ public class LocationService implements ApiService<Location> {
         } catch (IOException e) {
             throw new ApiServiceException("Error connecting with ship service", e);
         } catch (SerializationException e) {
-            // todo regelet
+            logger.error("An error has occured when serializing a json string in LocationService");
         }
 
         Location location = Mapper.map(dto);
-        // todo duration als parameter in constructor en vanbovenaf als property binnen laten komen
-        this.locationCache.cache(id, location, 1000);
+        this.locationCache.cache(id, location, duration);
 
         return location;
     }

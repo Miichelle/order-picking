@@ -14,14 +14,6 @@ public class Item {
         this.amount = amount;
     }
 
-    @Override
-    public String toString() {
-        return "Item{   " +
-                "productid=" + productid +
-                ", amount=" + amount +
-                '}';
-    }
-
     public int getAmount() {
         return this.amount;
     }
@@ -36,5 +28,13 @@ public class Item {
 
     public void setProductid(int productid) {
         this.productid = productid;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{   " +
+                "productid=" + productid +
+                ", amount=" + amount +
+                '}';
     }
 }

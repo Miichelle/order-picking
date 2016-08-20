@@ -3,6 +3,7 @@ package generator.generation;
 import generator.consumation.Consumer;
 import generator.models.domain.Item;
 import generator.models.domain.Order;
+import org.apache.log4j.Logger;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -16,10 +17,17 @@ import java.util.concurrent.ThreadLocalRandom;
  * Time: 21:04
  */
 public class RandomOrderGenerator implements Runnable {
+    private final Logger logger = Logger.getLogger(RandomOrderGenerator.class);
+
     private Consumer<Order> consumer;
+
+    private List<Integer> customerIds;
 
     private final int minimumDelay;
     private final int maximumDelay;
+
+    private final int minimumItemsSize;
+    private final int maximumItemsSize;
 
     private final int minimumPrice;
     private final int maximumPrice;
@@ -29,25 +37,29 @@ public class RandomOrderGenerator implements Runnable {
 
     private int nextOrderId;
 
-    private volatile boolean generate;
+    private List<Integer> productIds;
 
-    //todo: op volgorde zetten
     private Random random;
 
-    private List<Integer> customerIds;
-    private List<Integer> productIds;
+    private volatile boolean generate;
 
     public RandomOrderGenerator(
             Consumer<Order> consumer,
             List<Integer> customerIds, List<Integer> productIds,
             int minimumDelay, int maximumDelay,
+            int minimumItemsSize, int maximumItemsSize,
             int minimumPrice, int maximumPrice,
             int minimumItemAmount, int maximumItemAmount,
             int firstOrderId) {
         this.consumer = consumer;
 
+        this.customerIds = customerIds;
+
         this.minimumDelay = minimumDelay;
         this.maximumDelay = maximumDelay;
+
+        this.minimumItemsSize = minimumItemsSize;
+        this.maximumItemsSize = maximumItemsSize;
 
         this.minimumPrice = minimumPrice;
         this.maximumPrice = maximumPrice;
@@ -57,19 +69,16 @@ public class RandomOrderGenerator implements Runnable {
 
         this.nextOrderId = firstOrderId;
 
-        //TODO: mooi zetten
-        this.generate = true;
+        this.productIds = productIds;
+
         random = new Random();
 
-        this.customerIds = customerIds;
-        this.productIds = productIds;
+        this.generate = true;
+
     }
 
     public void setGenerate(boolean generate) {
         this.generate = generate;
-    }
-
-    public void generateOrder(){
     }
 
     @Override
@@ -78,15 +87,12 @@ public class RandomOrderGenerator implements Runnable {
         Item item = null;
 
         while (this.generate) {
-            System.out.println("hi");
-
             int orderId = this.nextOrderId++;
             LocalDateTime timestamp = LocalDateTime.now();
             int customerId =  this.random.nextInt(this.customerIds.size());
             int price = ThreadLocalRandom.current().nextInt(this.minimumPrice,this.maximumPrice);
+            int listSize = ThreadLocalRandom.current().nextInt(this.minimumItemsSize,this.maximumItemsSize);
 
-            //items
-            int listSize = this.random.nextInt(5) + 1;
             List<Item> items = new ArrayList<>();
             for(int i = 0; i < listSize; i++){
                 int productId =  this.random.nextInt(this.productIds.size());
@@ -96,16 +102,17 @@ public class RandomOrderGenerator implements Runnable {
             }
 
             order = new Order(customerId,items,orderId,price,timestamp);
+            System.out.println(order.toString());
 
             this.consumer.consume(order);
 
-            System.out.println(order.toString());
             try {
                 int randomDelay = ThreadLocalRandom.current().nextInt(this.minimumDelay,this.maximumDelay);
                 System.out.println("randomdelay: " + randomDelay);
                 Thread.sleep(randomDelay);
             } catch (InterruptedException e) {
-                // log
+                logger.error("An interrupt has occured in the randomOrderGenerator while waiting to generate a new order");
+
             }
         }
     }

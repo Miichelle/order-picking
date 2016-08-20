@@ -13,8 +13,9 @@ import java.util.List;
 public class None implements Optimalization {
     private LocationService locationService;
 
+
     public None() {
-        this.locationService = new LocationService();
+        //this.locationService = new LocationService(None.class);
     }
 
     @Override

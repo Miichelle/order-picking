@@ -11,6 +11,8 @@ public class LocationDto {
     private int rack;
     private String storageRoom;
 
+    public LocationDto(){}
+
     public LocationDto(int hallway, int productId, int rack, String storageRoom) {
         this.hallway = hallway;
         this.productId = productId;

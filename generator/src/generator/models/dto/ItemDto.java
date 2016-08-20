@@ -20,7 +20,6 @@ public class ItemDto {
     public int getAmount() {
         return this.amount;
     }
-
     public int getProductId() {
         return this.productId;
     }
@@ -28,7 +27,6 @@ public class ItemDto {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
     public void setProductId(int productId) {
         this.productId = productId;
     }

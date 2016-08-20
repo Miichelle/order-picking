@@ -5,7 +5,7 @@ import generator.amqp.AMQPSender;
 import generator.connection.ConnectionException;
 import generator.models.dto.OrderDto;
 import generator.sending.SenderException;
-import generator.serialization.OrderDtoJSONSerializer;
+import generator.serialization.JSONSerializer;
 import generator.serialization.SerializationException;
 import org.apache.log4j.Logger;
 
@@ -46,17 +46,17 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
             // make sure the queue exists
             channel.queueDeclare(queue, false, false, false, null);
         } catch (IOException e) {
-            String msg = "Something went wrong trying to declare the queue for channel=%s with RabbitMQ host=%s";
+            String msg = "While declaring the queue, something has went wrong for channel=%s with RabbitMQ host=%s";
             msg = String.format(msg, host, channel);
             throw new SenderException(msg, e);
         }
 
-        OrderDtoJSONSerializer orderDtoJSONSerializer = new OrderDtoJSONSerializer();
+        JSONSerializer<OrderDto> orderDtoJSONSerializer = new JSONSerializer(OrderDto.class);
         String json = "";
         try {
             json = orderDtoJSONSerializer.serialize(message);
         } catch (SerializationException e) {
-            logger.error("Error during conversion from object to XML");
+            logger.error("An error has occured during the conversion from an object to XML");
         }
 
         try {
@@ -64,7 +64,7 @@ public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
             System.out.println(json);
             logger.info("Message sent");
         } catch (IOException e) {
-            String msg = "Something went wrong trying to send a message to the queue for channel=%s " +
+            String msg = "Something went wrong when trying to send a message to the queue for channel=%s " +
                     "with RabbitMQ host=%s";
             msg = String.format(msg, host, channel);
             throw new SenderException(msg, e);

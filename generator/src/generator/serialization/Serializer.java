@@ -11,7 +11,7 @@ public interface Serializer<T> {
      * @return {@String}
      * @throws SerializationException
      */
-    String serialize(T order) throws SerializationException;
+    String serialize(T target) throws SerializationException;
 
     /**
      * Converts a conversion {@String} to an {@Object} wich requires a Class to convert to

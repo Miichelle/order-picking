@@ -2,6 +2,7 @@ package orderpicker.optimalization;
 
 import orderpicker.models.domain.Order;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -12,7 +13,9 @@ import java.util.List;
 public class Single implements Optimalization {
     @Override
     public List<Order> apply(List<Order> orders) {
-        // reverse n shit
+        for (Order order : orders) {
+            Collections.shuffle(order.getItems());
+        }
         return orders;
     }
 }

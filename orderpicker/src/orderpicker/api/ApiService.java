@@ -7,9 +7,8 @@ package orderpicker.api;
  */
 public interface ApiService<T> {
     /**
-     * //
+     * Get info from Api
      * @param id
-     * @return //
      * @throws ApiServiceException
      */
     T get(int id) throws ApiServiceException;

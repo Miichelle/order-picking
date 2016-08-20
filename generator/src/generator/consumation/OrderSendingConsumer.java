@@ -5,6 +5,7 @@ import generator.models.dto.OrderDto;
 import generator.models.mapping.Mapper;
 import generator.sending.Sender;
 import generator.sending.SenderException;
+import org.apache.log4j.Logger;
 
 /**
  * Michelle Beckers
@@ -12,6 +13,8 @@ import generator.sending.SenderException;
  * Time: 22:30
  */
 public class OrderSendingConsumer implements Consumer<Order> {
+    private final Logger logger = Logger.getLogger(OrderSendingConsumer.class);
+
     private Sender<OrderDto> sender;
 
     public OrderSendingConsumer(Sender<OrderDto> sender) {
@@ -26,6 +29,7 @@ public class OrderSendingConsumer implements Consumer<Order> {
             this.sender.send(dto);
         } catch (SenderException e) {
             // do something
+            logger.error("Something went wrong while consuming an order");
         }
     }
 }

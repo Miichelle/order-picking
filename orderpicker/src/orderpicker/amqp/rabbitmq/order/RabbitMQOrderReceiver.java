@@ -13,7 +13,7 @@ import orderpicker.models.domain.Order;
 import orderpicker.models.dto.OrderDto;
 import orderpicker.models.mapping.Mapper;
 import orderpicker.receiving.ReceiverException;
-import orderpicker.serialization.OrderDtoJSONSerializer;
+import orderpicker.serialization.JSONSerializer;
 import orderpicker.serialization.SerializationException;
 import org.apache.log4j.Logger;
 
@@ -25,9 +25,8 @@ import java.io.IOException;
  * Time: 00:46
  */
 public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
-    private Consumer<Order> consumer;
-
     private final static Logger logger = Logger.getLogger(RabbitMQOrderReceiver.class);
+    private Consumer<Order> consumer;
 
     private RabbitMQConnectionHandler connectionHandler;
 
@@ -57,7 +56,7 @@ public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
             // make sure the queue exists
             channel.queueDeclare(queue, false, false, false, null);
         } catch (IOException e) {
-            String msg = "Something went wrong trying to declare the queue for channel=%s with RabbitMQ host=%s";
+            String msg = "Something went wrong when declaring the queue for channel=%s with RabbitMQ host=%s";
             msg = String.format(msg, host, channel);
             throw new ReceiverException(msg, e);
         }
@@ -67,21 +66,20 @@ public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties,
                                        byte[] body) throws IOException {
-                OrderDtoJSONSerializer orderDtoJSONSerializer = new OrderDtoJSONSerializer();
+                JSONSerializer<OrderDto> orderDtoJSONSerializer = new JSONSerializer<>(OrderDto.class);
                 OrderDto orderDto = null;
                 try {
                     orderDto = orderDtoJSONSerializer.deserialize(new String(body, "UTF-8"));
                 } catch (SerializationException e) {
-                    e.printStackTrace();
-                    //TODO errorafhandeling
+                    logger.error("An error has occured while serializing an orderDto");
                 }
-
-                logger.info("Received message");
+                logger.info("Message received");
 
                 Order order = Mapper.map(orderDto);
 
                 RabbitMQOrderReceiver.this.consumer.consume(order);
                 // maybe for log: System.out.println(" [x] Received '" + message + "'");
+                System.out.println(order.toString());
             }
         };
 

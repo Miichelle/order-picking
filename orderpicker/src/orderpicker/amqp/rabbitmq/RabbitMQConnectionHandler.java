@@ -31,16 +31,17 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
     public final String getHost() { return this.host; }
     public final String getQueue() { return this.queue; }
 
+    //TODO:specifiek connectie openen en sluiten voor RABBITMQ
     @Override
     public void close() throws ConnectionException {
         try {
             this.channel.close();
         } catch (IOException e) {
-            String msg = "Something went wrong trying to close the channel with RabbitMQ host=%s";
+            String msg = "Something went wrong while closing the channel with RabbitMQ host=%s";
             msg = String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         } catch (TimeoutException e) {
-            String msg = "Connection timed out trying to close the channel with RabbitMQ host=%s";
+            String msg = "The connection has timed out while closing the channel with RabbitMQ host=%s";
             msg =  String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         }
@@ -48,7 +49,7 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
         try {
             this.connection.close();
         } catch (IOException e) {
-            String msg = "Something went wrong trying to close the connection with RabbitMQ host=%s";
+            String msg = "Something went wrong while closing the connection with RabbitMQ host=%s";
             msg = String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         }
@@ -62,11 +63,11 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
         try {
             this.connection = factory.newConnection();
         } catch (IOException e) {
-            String msg = "Something went wrong trying to setup the connection with RabbitMQ host=%s";
+            String msg = "Something went wrong during the setup of the connection with RabbitMQ host=%s";
             msg = String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         } catch (TimeoutException e) {
-            String msg = "Connection timed out trying to setup the connection with RabbitMQ host=%s";
+            String msg = "The connection timed out during the setup with RabbitMQ host=%s";
             msg =  String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         }
@@ -74,7 +75,7 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
         try {
             this.channel = this.connection.createChannel();
         } catch (IOException e) {
-            String msg = "Something went wrong trying to setup the channel with RabbitMQ host=%s";
+            String msg = "Something went wrong during the setup of the channel with RabbitMQ host=%s";
             msg = String.format(msg, this.host);
             throw new ConnectionException(msg, e);
         }
