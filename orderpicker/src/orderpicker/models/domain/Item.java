@@ -6,33 +6,47 @@ package orderpicker.models.domain;
  * Time: 17:22
  */
 public class Item {
-    private int productid;
+    private int productId;
     private int amount;
+    private Location location;
 
     public Item(int productId, int amount) {
-        this.productid = productId;
+        this.productId = productId;
         this.amount = amount;
     }
 
-    @Override
-    public String toString() {
-        return "Item{   " +
-                "productid=" + productid +
-                ", amount=" + amount +
-                '}';
+    public Item(int productId, int amount, Location location) {
+        this.productId = productId;
+        this.amount = amount;
+        this.location = location;
     }
 
     public int getAmount() {
         return this.amount;
     }
-    public int getProductid() {
-        return this.productid;
+    public Location getLocation() {
+        return location;
+    }
+    public int getProductId() {
+        return this.productId;
     }
 
     public void setAmount(int amount) {
         this.amount = amount;
     }
-    public void setProductid(int productid) {
-        this.productid = productid;
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "productId=" + productId +
+                ", amount=" + amount +
+                ", location=" + location +
+                '}';
     }
 }

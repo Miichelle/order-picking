@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/generator/generator.iml" filepath="$PROJECT_DIR$/generator/generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mobileApp/mobileApp.iml" filepath="$PROJECT_DIR$/mobileApp/mobileApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/orderpicker/orderpicker.iml" filepath="$PROJECT_DIR$/orderpicker/orderpicker.iml" />
     </modules>
   </component>

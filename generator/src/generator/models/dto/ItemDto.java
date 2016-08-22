@@ -7,8 +7,8 @@ package generator.models.dto;
  */
 //TODO: Dto voor seperation of concerns. model -> puur om code intern te houden, order voor enkel wat naar buiten moet
 public class ItemDto {
-    private int productId;
     private int amount;
+    private int productId;
 
     public ItemDto() {}
 

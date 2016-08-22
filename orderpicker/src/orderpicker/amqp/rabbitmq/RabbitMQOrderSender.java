@@ -1,12 +1,12 @@
-package generator.amqp.rabbitmq;
+package orderpicker.amqp.rabbitmq;
 
 import com.rabbitmq.client.Channel;
-import generator.amqp.AMQPSender;
-import generator.connection.ConnectionException;
-import generator.models.dto.OrderDto;
-import generator.sending.SenderException;
-import generator.serialization.JSONSerializer;
-import generator.serialization.SerializationException;
+import orderpicker.amqp.AMQPSender;
+import orderpicker.connection.ConnectionException;
+import orderpicker.models.dto.OrderDto;
+import orderpicker.sending.SenderException;
+import orderpicker.serialization.JSONSerializer;
+import orderpicker.serialization.SerializationException;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

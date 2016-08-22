@@ -13,7 +13,7 @@ public class LocationDto {
 
     public LocationDto(){}
 
-    public LocationDto(int hallway, int productId, int rack, String storageRoom) {
+    public LocationDto(int productId,int hallway, int rack, String storageRoom) {
         this.hallway = hallway;
         this.productId = productId;
         this.rack = rack;

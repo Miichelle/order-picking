@@ -9,22 +9,30 @@ import java.util.List;
  * Time: 00:47
  */
 public class OrderDto {
-    private int customerid;
+    private int customerId;
     private List<ItemDto> items;
-    private int orderid;
+    private int orderId;
     private int price;
     private LocalDateTime timestamp;
 
     public OrderDto() {}
 
-    public int getCustomerid() {
-        return customerid;
+    public OrderDto(int orderId, int customerId, List<ItemDto> items, int price, LocalDateTime timestamp) {
+        this.customerId = customerId;
+        this.items = items;
+        this.orderId = orderId;
+        this.price = price;
+        this.timestamp = timestamp;
+    }
+
+    public int getCustomerId() {
+        return customerId;
     }
     public List<ItemDto> getItems() {
         return items;
     }
-    public int getOrderid() {
-        return orderid;
+    public int getOrderId() {
+        return orderId;
     }
     public int getPrice() {
         return price;
@@ -33,19 +41,30 @@ public class OrderDto {
         return timestamp;
     }
 
-    public void setCustomerid(int customerid) {
-        this.customerid = customerid;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
     public void setItems(List<ItemDto> items) {
         this.items = items;
     }
-    public void setOrderid(int orderid) {
-        this.orderid = orderid;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
     public void setPrice(int price) {
         this.price = price;
     }
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderDto{" +
+                "customerId=" + customerId +
+                ", items=" + items +
+                ", orderId=" + orderId +
+                ", price=" + price +
+                ", timestamp=" + timestamp +
+                '}';
     }
 }

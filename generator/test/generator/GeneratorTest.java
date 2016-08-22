@@ -28,7 +28,7 @@ public class GeneratorTest {
         final AMQPProperties properties = new AMQPProperties("properties/amqp.properties", "rabbitmq");
 
         final List<Integer> customerIds = Arrays.asList(1000000,1000001,1000003,1000004,1000005,1000006,1000007,1000008,1000010);
-        final List<Integer> productIds = Arrays.asList(1000045, 1000074, 1000655, 1000041, 1025601);
+        final List<Integer> productIds = Arrays.asList(1000001,1000003,1000004,1000005,1000006,1000007,1000008,1000010,1000011,1000012,1000013,1000014,1000015,1000016,1000017,1000018,1000019,1000020,1000050,1000060,1000099,1000123,1000456,1000099);
 
         final int minimumDelay = 500;
         final int maximumDelay = 1500;

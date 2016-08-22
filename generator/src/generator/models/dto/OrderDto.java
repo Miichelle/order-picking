@@ -17,10 +17,10 @@ public class OrderDto {
 
     public OrderDto() {}
 
-    public OrderDto(int customerId, List<ItemDto> items, int orderId, int price, LocalDateTime timestamp) {
+    public OrderDto(int orderId, int customerId, List<ItemDto> items,  int price, LocalDateTime timestamp) {
+        this.orderId = orderId;
         this.customerId = customerId;
         this.items = items;
-        this.orderId = 100000;
         this.price = price;
         this.timestamp = timestamp;
     }

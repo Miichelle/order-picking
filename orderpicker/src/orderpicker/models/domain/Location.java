@@ -44,10 +44,13 @@ public class Location {
         this.storageRoom = storageRoom;
     }
 
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Location{" +
+                "hallway=" + hallway +
+                ", productId=" + productId +
+                ", rack=" + rack +
+                ", storageRoom='" + storageRoom + '\'' +
+                '}';
+    }
 }

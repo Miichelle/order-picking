@@ -1,9 +1,10 @@
-package generator.models.mapping;
+package orderpicker.models.mapping;
 
-import generator.models.domain.Item;
-import generator.models.domain.Order;
-import generator.models.dto.ItemDto;
-import generator.models.dto.OrderDto;
+import orderpicker.models.domain.Item;
+import orderpicker.models.domain.Location;
+import orderpicker.models.domain.Order;
+import orderpicker.models.dto.ItemDto;
+import orderpicker.models.dto.OrderDto;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -11,14 +12,14 @@ import java.util.List;
 
 /**
  * Michelle Beckers
- * Datum: 12-8-2016
- * Time: 22:36
+ * Datum: 22-8-2016
+ * Time: 19:07
  */
-public class Mapper {
+public class MapToDTO {
     public static OrderDto map(Order order) {
-        final int customerId = order.getCustomerid();
+        final int customerId = order.getCustomerId();
         final List<ItemDto> items = map(order.getItems());
-        final int orderId = order.getOrderid();
+        final int orderId = order.getOrderId();
         final int price = order.getPrice();
         final LocalDateTime timestamp = order.getTimestamp();
 
@@ -26,10 +27,11 @@ public class Mapper {
     }
 
     public static ItemDto map(Item item) {
-        final int productId = item.getProductid();
+        final int productId = item.getProductId();
         final int amount = item.getAmount();
+        final Location location = item.getLocation();
 
-        return new ItemDto(productId, amount);
+        return new ItemDto(productId, amount,location);
     }
 
     public static List<ItemDto> map(List<Item> items) {
@@ -39,4 +41,5 @@ public class Mapper {
 
         return itemDtos;
     }
+
 }

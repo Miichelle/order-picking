@@ -1,8 +1,8 @@
 package orderpicker.orderpicking;
 
-import orderpicker.consumation.Consumer;
 import orderpicker.api.ApiServiceException;
 import orderpicker.api.LocationService;
+import orderpicker.consumation.Consumer;
 import orderpicker.models.domain.Item;
 import orderpicker.models.domain.Location;
 import orderpicker.models.domain.Order;
@@ -23,30 +23,32 @@ public class OrderPicker implements Consumer<Order> {
     private LocationService locationService;
     private Optimalization optimalization;
 
-    public OrderPicker(Optimalization optimalization) {
-        this.locationService = new LocationService();
+    private List<Order> orders;
+
+    public OrderPicker(Optimalization optimalization,long duration,long retryGetInterval) {
+        this.locationService = new LocationService(duration,retryGetInterval);
         this.optimalization = optimalization;
+
+        orders = new ArrayList<>();
     }
 
+    //TODO:orderpicker consumes de locaties van items en steekt in cache
     @Override
-    public void consume(Order target) {
-        List<Location> locations = new ArrayList<>();
+    public void consume(Order order) {
+        orders.add(order);
 
-        for (Item item : target.getItems()) {
-            Location location = null;
+        Location location = null;
 
+        for (Item item : order.getItems()) {
             try {
-                location = this.locationService.get(item.getProductid());
+                location= this.locationService.get(item.getProductId());
             } catch (ApiServiceException e) {
                 logger.error("Something went wrong while consuming the location in the orderPicker");
             }
-            locations.add(location);
+            //TODO: DIT MAG NIET. MOET VIA CACHE GEBEUREN
+            item.setLocation(location);
         }
 
-        System.out.println(locations.toString());
-      //locations = this.optimalization.apply();
-    }
-
-    public void start() {
+         this.optimalization.apply(orders);
     }
 }

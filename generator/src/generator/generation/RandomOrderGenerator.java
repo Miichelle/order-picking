@@ -89,20 +89,19 @@ public class RandomOrderGenerator implements Runnable {
         while (this.generate) {
             int orderId = this.nextOrderId++;
             LocalDateTime timestamp = LocalDateTime.now();
-            int customerId =  this.random.nextInt(this.customerIds.size());
+            Integer customerId =  this.customerIds.get(this.random.nextInt(this.customerIds.size()));
             int price = ThreadLocalRandom.current().nextInt(this.minimumPrice,this.maximumPrice);
             int listSize = ThreadLocalRandom.current().nextInt(this.minimumItemsSize,this.maximumItemsSize);
 
             List<Item> items = new ArrayList<>();
             for(int i = 0; i < listSize; i++){
-                int productId =  this.random.nextInt(this.productIds.size());
+                Integer productId =  this.productIds.get(this.random.nextInt(this.productIds.size()));
                 int amount =  ThreadLocalRandom.current().nextInt(this.minimumItemAmount,this.maximumItemAmount);
                 item = new Item(productId,amount);
                 items.add(item);
             }
 
-            order = new Order(customerId,items,orderId,price,timestamp);
-            System.out.println(order.toString());
+            order = new Order(orderId,customerId,items,price,timestamp);
 
             this.consumer.consume(order);
 
@@ -112,7 +111,6 @@ public class RandomOrderGenerator implements Runnable {
                 Thread.sleep(randomDelay);
             } catch (InterruptedException e) {
                 logger.error("An interrupt has occured in the randomOrderGenerator while waiting to generate a new order");
-
             }
         }
     }

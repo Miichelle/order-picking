@@ -13,16 +13,21 @@ import java.util.TimerTask;
  * Time: 20:38
  */
 public class LocationCache implements Cache<Integer, Location> {
+    private long duration;
     private Map<Integer, Location> locations;
     private Map<Integer, Timer> timers;
 
     public LocationCache() {
+    }
+
+    public LocationCache(long duration) {
         this.locations = new HashMap<>();
         this.timers = new HashMap<>();
+        this.duration = duration;
     }
 
     @Override
-    public void cache(Integer key, Location value, long duration) {
+    public void cache(Integer key, Location value) {
         //TODO:  nog niet in cache
         if (!this.isCached(key)) {
             //toDO: voeg dan toe aan cash

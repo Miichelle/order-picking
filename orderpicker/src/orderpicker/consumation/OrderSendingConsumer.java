@@ -1,10 +1,10 @@
-package generator.consumation;
+package orderpicker.consumation;
 
-import generator.models.domain.Order;
-import generator.models.dto.OrderDto;
-import generator.models.mapping.Mapper;
-import generator.sending.Sender;
-import generator.sending.SenderException;
+import orderpicker.models.domain.Order;
+import orderpicker.models.dto.OrderDto;
+import orderpicker.models.mapping.MapToDTO;
+import orderpicker.sending.Sender;
+import orderpicker.sending.SenderException;
 import org.apache.log4j.Logger;
 
 /**
@@ -23,12 +23,10 @@ public class OrderSendingConsumer implements Consumer<Order> {
 
     @Override
     public void consume(Order target) {
-        OrderDto dto = Mapper.map(target);
-
-       try {
+        OrderDto dto = MapToDTO.map(target);
+        try {
             this.sender.send(dto);
         } catch (SenderException e) {
-            // do something
             logger.error("Something went wrong while consuming an order");
         }
     }

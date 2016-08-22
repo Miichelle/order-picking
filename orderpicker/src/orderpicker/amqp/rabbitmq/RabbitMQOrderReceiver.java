@@ -1,4 +1,4 @@
-package orderpicker.amqp.rabbitmq.order;
+package orderpicker.amqp.rabbitmq;
 
 
 import com.rabbitmq.client.AMQP;
@@ -6,7 +6,6 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.DefaultConsumer;
 import com.rabbitmq.client.Envelope;
 import orderpicker.amqp.AMQPReceiver;
-import orderpicker.amqp.rabbitmq.RabbitMQConnectionHandler;
 import orderpicker.connection.ConnectionException;
 import orderpicker.consumation.Consumer;
 import orderpicker.models.domain.Order;
@@ -76,10 +75,8 @@ public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
                 logger.info("Message received");
 
                 Order order = Mapper.map(orderDto);
-
                 RabbitMQOrderReceiver.this.consumer.consume(order);
-                // maybe for log: System.out.println(" [x] Received '" + message + "'");
-                System.out.println(order.toString());
+
             }
         };
 

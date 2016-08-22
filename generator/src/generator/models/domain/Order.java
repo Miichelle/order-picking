@@ -16,10 +16,10 @@ public class Order {
     private int price;
     private LocalDateTime timestamp;
 
-    public Order(int customerId, List<Item> items, int orderId, int price, LocalDateTime timestamp) {
+    public Order(int orderId, int customerId, List<Item> items,  int price, LocalDateTime timestamp) {
+        this.orderid = orderId;
         this.customerid = customerId;
         this.items = items;
-        this.orderid = orderId;
         this.price = price;
         this.timestamp = timestamp;
     }
@@ -58,10 +58,10 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order:  " +
-                "customerid=" + customerid +
-                ", items=" + items.size() + " " + items +
-                ", orderid=" + orderid +
+        return "Order{" +
+                "orderid=" + orderid +
+                ", items=" + items +
+                ", customerid=" + customerid +
                 ", price=" + price +
                 ", timestamp=" + timestamp +
                 '}';

@@ -1,8 +1,14 @@
 package orderpicker;
 
-import orderpicker.amqp.rabbitmq.order.RabbitMQOrderReceiver;
+import orderpicker.amqp.AMQPSender;
+import orderpicker.amqp.rabbitmq.RabbitMQOrderReceiver;
+import orderpicker.amqp.rabbitmq.RabbitMQOrderSender;
 import orderpicker.connection.ConnectionException;
-import orderpicker.optimalization.None;
+import orderpicker.consumation.Consumer;
+import orderpicker.consumation.OrderSendingConsumer;
+import orderpicker.models.domain.Order;
+import orderpicker.models.dto.OrderDto;
+import orderpicker.optimalization.SingleOptimalization;
 import orderpicker.orderpicking.OrderPicker;
 import orderpicker.receiving.ReceiverException;
 import org.apache.log4j.Logger;
@@ -17,18 +23,28 @@ import java.util.Scanner;
 public class OrderpickerTest {
     private final static Logger logger = Logger.getLogger(OrderpickerTest.class);
 
+
     public static void main(String[] args) {
         logger.info("Booting communications");
 
-        OrderPicker orderPicker = new OrderPicker(new None());
-        RabbitMQOrderReceiver receiver = new RabbitMQOrderReceiver("localhost", "generator.sender.queue", orderPicker);
+        //TODO beter naam verzinnen
+        final long cleanCacheTimer =  2000000000;
+        final long locationTimer = 10000;
+
+        final AMQPSender<OrderDto> sender = new RabbitMQOrderSender("localhost", "orderpicker.sender.queue");
+        final Consumer<Order> consumer = new OrderSendingConsumer(sender);
+        final OrderPicker orderPicker = new OrderPicker(new SingleOptimalization(consumer),cleanCacheTimer,locationTimer);
+        final RabbitMQOrderReceiver receiver = new RabbitMQOrderReceiver("localhost", "generator.sender.queue", orderPicker);
+
 
        try {
             receiver.open();
+            sender.open();
         } catch (ConnectionException e) {
-            e.printStackTrace();
+           logger.fatal(e.getMessage());
+           //System.exit(1);
         } catch (ReceiverException e) {
-            e.printStackTrace();
+           logger.fatal(e.getMessage());
         }
 
         try {

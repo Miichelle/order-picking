@@ -10,28 +10,28 @@ import java.util.List;
  * Time: 18:10
  */
 public class Order {
-    private int customerid;
+    private int customerId;
     private List<Item> items;
-    private int orderid;
+    private int orderId;
     private int price;
     private LocalDateTime timestamp;
 
-    public Order(int customerId, List<Item> items, int orderId, int price, LocalDateTime timestamp) {
-        this.customerid = customerId;
+    public Order(int orderId, int customerId, List<Item> items, int price, LocalDateTime timestamp) {
+        this.customerId = customerId;
         this.items = items;
-        this.orderid = orderId;
+        this.orderId = orderId;
         this.price = price;
         this.timestamp = timestamp;
     }
 
-    public int getCustomerid() {
-        return customerid;
+    public int getCustomerId() {
+        return customerId;
     }
     public List<Item> getItems() {
         return items;
     }
-    public int getOrderid() {
-        return orderid;
+    public int getOrderId() {
+        return orderId;
     }
     public int getPrice() {
         return price;
@@ -40,14 +40,14 @@ public class Order {
         return timestamp;
     }
 
-    public void setCustomerid(int customerid) {
-        this.customerid = customerid;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
     public void setItems(List<Item> items) {
         this.items = items;
     }
-    public void setOrderid(int orderid) {
-        this.orderid = orderid;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
     public void setPrice(int price) {
         this.price = price;
@@ -58,10 +58,10 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order:  " +
-                "customerid=" + customerid +
+        return "Order{" +
+                "customerId=" + customerId +
                 ", items=" + items +
-                ", orderid=" + orderid +
+                ", orderId=" + orderId +
                 ", price=" + price +
                 ", timestamp=" + timestamp +
                 '}';
