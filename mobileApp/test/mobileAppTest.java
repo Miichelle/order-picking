@@ -7,6 +7,10 @@ import java.io.IOException;
  * Datum: 22-8-2016
  * Time: 23:01
  */
+
+/**
+ * This class functions as test entry point of the mobileApp
+ */
 public class mobileAppTest {
     private final static String QUEUE_NAME = "orderpicker.sender.queue";
 
@@ -24,7 +28,7 @@ public class mobileAppTest {
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
                     throws IOException {
                 String message = new String(body, "UTF-8");
-                System.out.println(" [x] Received '" + message + "'");
+                System.out.println(" [x] Received order: '" + message + "'");
             }
         };
         channel.basicConsume(QUEUE_NAME, true, consumer);

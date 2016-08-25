@@ -5,6 +5,10 @@ package orderpicker.models.dto;
  * Datum: 16-8-2016
  * Time: 13:54
  */
+
+/**
+ * This class represents an location
+ */
 public class LocationDto {
     private int hallway;
     private int productId;

@@ -16,6 +16,10 @@ import java.util.concurrent.ThreadLocalRandom;
  * Datum: 12-8-2016
  * Time: 21:04
  */
+
+/**
+ * This class generates random orders
+ */
 public class RandomOrderGenerator implements Runnable {
     private final Logger logger = Logger.getLogger(RandomOrderGenerator.class);
 

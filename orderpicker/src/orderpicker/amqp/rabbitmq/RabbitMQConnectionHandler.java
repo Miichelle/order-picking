@@ -14,6 +14,10 @@ import java.util.concurrent.TimeoutException;
  * Datum: 9-8-2016
  * Time: 00:12
  */
+
+/***
+ * This class handles the connection for RabbitMQ
+ */
 public class RabbitMQConnectionHandler implements ConnectionHandler {
     private final String host;
     private final String queue;
@@ -31,7 +35,6 @@ public class RabbitMQConnectionHandler implements ConnectionHandler {
     public final String getHost() { return this.host; }
     public final String getQueue() { return this.queue; }
 
-    //TODO:specifiek connectie openen en sluiten voor RABBITMQ
     @Override
     public void close() throws ConnectionException {
         try {

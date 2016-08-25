@@ -5,7 +5,7 @@ import orderpicker.cache.Cache;
 import orderpicker.cache.LocationCache;
 import orderpicker.models.domain.Location;
 import orderpicker.models.dto.LocationDto;
-import orderpicker.models.mapping.Mapper;
+import orderpicker.models.mapping.MapToDomain;
 import orderpicker.serialization.JSONSerializer;
 import orderpicker.serialization.SerializationException;
 import orderpicker.serialization.Serializer;
@@ -17,6 +17,10 @@ import java.io.IOException;
  * Michelle Beckers
  * Datum: 9-8-2016
  * Time: 18:06
+ */
+
+/**
+ * This class gets the locations using the LocationServiceProxy
  */
 public class LocationService implements ApiService<Location> {
     private final Logger logger = Logger.getLogger(LocationService.class);
@@ -44,21 +48,21 @@ public class LocationService implements ApiService<Location> {
         Location location = null;
 
         String url = String.format("%s/productID/%d", this.baseUrl, id);
+        String errorString = "{\"error\":\"Unknown productID\",\"description\":\"Wrong productID format (< 1000000)\"}";
 
         try {
             json = this.service.get(url);
 
-            String errorString = "{\"error\":\"Unknown productID\",\"description\":\"Wrong productID format (< 1000000)\"}";
             if(!errorString.equals(json)) {
                 dto = this.locationDtoSerializer.deserialize(json);
 
                 dto.setProductId(id);
 
-                location = Mapper.map(dto);
+                location = MapToDomain.map(dto);
 
                 this.locationCache.cache(id, location);
             }else{
-                throw new ApiServiceException("location not found");
+                throw new ApiServiceException("Location not found");
             }
 
         } catch (IOException e) {

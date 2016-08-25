@@ -19,6 +19,10 @@ import java.util.Scanner;
  * Datum: 8-8-2016
  * Time: 22:43
  */
+
+/**
+ * This class functions as test entry point of the generator
+ */
 public class GeneratorTest {
     private final static Logger logger = Logger.getLogger(GeneratorTest.class);
 

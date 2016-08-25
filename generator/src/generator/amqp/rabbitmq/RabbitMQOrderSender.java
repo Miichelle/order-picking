@@ -16,7 +16,10 @@ import java.io.IOException;
  * Datum: 9-8-2016
  * Time: 00:46
  */
-//TODO: 1 sender per model ivm type (in dit geval maar 1 nodig nl enkel order)
+
+/***
+ * This class sends order messages
+ */
 public class RabbitMQOrderSender implements AMQPSender<OrderDto> {
     private RabbitMQConnectionHandler connectionHandler;
 

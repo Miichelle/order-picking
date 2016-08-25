@@ -10,7 +10,7 @@ import orderpicker.connection.ConnectionException;
 import orderpicker.consumation.Consumer;
 import orderpicker.models.domain.Order;
 import orderpicker.models.dto.OrderDto;
-import orderpicker.models.mapping.Mapper;
+import orderpicker.models.mapping.MapToDomain;
 import orderpicker.receiving.ReceiverException;
 import orderpicker.serialization.JSONSerializer;
 import orderpicker.serialization.SerializationException;
@@ -22,6 +22,10 @@ import java.io.IOException;
  * Michelle Beckers
  * Datum: 9-8-2016
  * Time: 00:46
+ */
+
+/***
+ * This class receives order messages
  */
 public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
     private final static Logger logger = Logger.getLogger(RabbitMQOrderReceiver.class);
@@ -74,7 +78,7 @@ public class RabbitMQOrderReceiver implements AMQPReceiver<OrderDto> {
                 }
                 logger.info("Message received");
 
-                Order order = Mapper.map(orderDto);
+                Order order = MapToDomain.map(orderDto);
                 RabbitMQOrderReceiver.this.consumer.consume(order);
 
             }

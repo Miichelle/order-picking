@@ -8,6 +8,10 @@ import java.util.List;
  * Datum: 9-8-2016
  * Time: 00:47
  */
+
+/**
+ * This class represents an order
+ */
 public class OrderDto {
     private int customerId;
     private List<ItemDto> items;

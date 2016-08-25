@@ -11,9 +11,13 @@ import java.util.List;
  * Datum: 18-8-2016
  * Time: 16:06
  */
+
+/**
+ * This strategy provides a single optimalization: it shuffles the order items
+ */
 public class SingleOptimalization implements Optimalization {
     @Override
-    public List<Order> apply(Order order) {
+    public List<Order> optimize(Order order) {
         Collections.shuffle(order.getItems());
 
         List<Order> orders = new ArrayList<>();

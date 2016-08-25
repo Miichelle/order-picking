@@ -12,6 +12,12 @@ import java.util.TimerTask;
  * Datum: 18-8-2016
  * Time: 20:38
  */
+
+/**
+ * This class is a Cache<Integer, Location> implementation that makes use of a HashMap containing keys towards
+ * ArrayLists so it can cache many locations using their productIds.
+ * Its messages are kept temporarily using Timertasks.
+ */
 public class LocationCache implements Cache<Integer, Location> {
     private long duration;
     private Map<Integer, Location> locations;
@@ -25,25 +31,20 @@ public class LocationCache implements Cache<Integer, Location> {
 
     @Override
     public void cache(Integer key, Location value) {
-        //TODO:  nog niet in cache
         if (!this.isCached(key)) {
-            //toDO: voeg dan toe aan cash
             this.locations.put(key, value);
         }
 
-        //TODO: als nog geen timer op staat
         if (!this.isScheduled(key)) {
             Timer timer = new Timer();
 
             TimerTask task = new TimerTask() {
                 @Override
-                //TODO: indien afgelopen maak cacheveld leeg
                 public void run() {
                     LocationCache.this.clear(key);
                 }
             };
 
-            //TODO: voeg schema toe en voeg dan toe aan timers
             timer.schedule(task, duration);
             this.timers.put(key, timer);
         }
@@ -51,7 +52,6 @@ public class LocationCache implements Cache<Integer, Location> {
 
     @Override
     public void clear(Integer key) {
-        //TODO: verwijder locatievalue uit de cache en verwijder de timer erop
         this.locations.remove(key);
         this.timers.remove(key);
     }

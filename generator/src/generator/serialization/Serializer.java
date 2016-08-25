@@ -5,16 +5,20 @@ package generator.serialization;
  * Datum: 3-8-2016
  * Time: 16:20
  */
+
+/***
+ * Class for various types of conversions
+ */
 public interface Serializer<T> {
     /**
-     * Converts an {@Object} to a {@String} from the conversion type
+     * Converts an {@Object} to a {@String}
      * @return {@String}
      * @throws SerializationException
      */
     String serialize(T target) throws SerializationException;
 
     /**
-     * Converts a conversion {@String} to an {@Object} wich requires a Class to convert to
+     * Converts a {@String} to an {@Object}
      * @return {@Object}
      * @throws SerializationException
      */

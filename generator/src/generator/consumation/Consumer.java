@@ -6,7 +6,15 @@ package generator.consumation;
  * Time: 21:59
  */
 
-//TODO: observer pattern
+/**
+ * This interface defines how messages can be consumed
+ */
 public interface Consumer<T> {
+
+    /**
+     * This method defines consuming functionality.
+     *
+     * @param target The target to consume
+     */
     void consume(T target);
 }

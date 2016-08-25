@@ -5,6 +5,10 @@ package orderpicker.receiving;
  * Datum: 9-8-2016
  * Time: 00:34
  */
+
+/**
+ *Exception class for any exception concerning
+ */
 public class ReceiverException extends Exception {
     public ReceiverException() {
         super();

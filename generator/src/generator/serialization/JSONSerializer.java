@@ -7,6 +7,10 @@ import com.google.gson.Gson;
  * Datum: 18-8-2016
  * Time: 18:41
  */
+
+/***
+ * JSON serializer for conversion from a to json
+ */
 public class JSONSerializer<T> implements Serializer<T> {
     private final Class<?> type;
     private Gson gson;

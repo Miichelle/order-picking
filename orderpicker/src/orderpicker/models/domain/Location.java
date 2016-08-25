@@ -5,6 +5,10 @@ package orderpicker.models.domain;
  * Datum: 3-8-2016
  * Time: 18:05
  */
+
+/**
+ * This class represents an Location
+ */
 public class Location {
     private int hallway;
     private int productId;
@@ -42,15 +46,5 @@ public class Location {
     }
     public void setStorageRoom(String storageRoom) {
         this.storageRoom = storageRoom;
-    }
-
-    @Override
-    public String toString() {
-        return "Location{" +
-                "hallway=" + hallway +
-                ", productId=" + productId +
-                ", rack=" + rack +
-                ", storageRoom='" + storageRoom + '\'' +
-                '}';
     }
 }

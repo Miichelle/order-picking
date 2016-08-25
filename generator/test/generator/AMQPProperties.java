@@ -8,6 +8,10 @@ import java.util.Properties;
  * Datum: 12-8-2016
  * Time: 23:34
  */
+
+/**
+ * Properties handler class for AMQP properties.
+ */
 public class AMQPProperties {
     private final Properties properties;
 

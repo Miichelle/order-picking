@@ -15,6 +15,10 @@ import java.util.List;
  * Datum: 22-8-2016
  * Time: 19:07
  */
+
+/**
+ * This class provides model mapping
+ */
 public class MapToDTO {
     public static OrderDto map(Order order) {
         final int customerId = order.getCustomerId();

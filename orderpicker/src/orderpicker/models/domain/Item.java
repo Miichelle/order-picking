@@ -5,6 +5,10 @@ package orderpicker.models.domain;
  * Datum: 3-8-2016
  * Time: 17:22
  */
+
+/**
+ * This class represents an item
+ */
 public class Item {
     private int productId;
     private int amount;
@@ -39,14 +43,5 @@ public class Item {
     }
     public void setProductId(int productId) {
         this.productId = productId;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{" +
-                "productId=" + productId +
-                ", amount=" + amount +
-                ", location=" + location +
-                '}';
     }
 }

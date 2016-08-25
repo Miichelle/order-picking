@@ -18,6 +18,10 @@ import java.util.List;
  * Datum: 18-8-2016
  * Time: 19:56
  */
+
+/**
+ * This class consumes the locations of the order items
+ */
 public class OrderPicker implements Consumer<Order> {
     private final Logger logger = Logger.getLogger(OrderPicker.class);
 
@@ -26,14 +30,13 @@ public class OrderPicker implements Consumer<Order> {
     private Consumer<Order> consumer;
     private Buffer<Order> orderBuffer;
 
-    public OrderPicker(Consumer<Order> consumer, Optimalization optimalization, long duration) {
+    public OrderPicker(Consumer<Order> consumer, Optimalization optimalization, long cacheInterval,long locationBufferInterval) {
         this.consumer = consumer;
-        this.locationService = new LocationService(duration);
+        this.locationService = new LocationService(cacheInterval);
         this.optimalization = optimalization;
-        this.orderBuffer = new OrderBuffer(10000);
+        this.orderBuffer = new OrderBuffer(locationBufferInterval);
     }
 
-    //TODO:orderpicker consumes de locaties van items en steekt in cache
     @Override
     public void consume(Order order) {
         Location location = null;
@@ -42,23 +45,24 @@ public class OrderPicker implements Consumer<Order> {
             try {
                 location= this.locationService.get(item.getProductId());
             } catch (ApiServiceException e) {
-                logger.error("Something went wrong while consuming the location in the orderPicker");
+                logger.warn("Something went wrong while consuming the location");
                 this.orderBuffer.buffer(order);
             }
 
             item.setLocation(location);
         }
 
-        List<Order> optimizedOrders = this.optimalization.apply(order);
+        List<Order> optimizedOrders = this.optimalization.optimize(order);
 
         for (Order optimizedOrder : optimizedOrders) {
             this.consumer.consume(optimizedOrder);
         }
 
-        List<Order> uncompletedOrders = this.orderBuffer.getBufferedItems();
+        List<Order> uncompletedOrders =  this.orderBuffer.getBufferedItems();
 
         for (Order uncompletedOrder : uncompletedOrders) {
-            this.consume(uncompletedOrder);
+                logger.info("Retrying to consume location");
+                this.consume(uncompletedOrder);
         }
     }
 }

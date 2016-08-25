@@ -5,9 +5,13 @@ package orderpicker.api;
  * Datum: 3-8-2016
  * Time: 18:02
  */
+
+/**
+ * Defines a service which supplies data about the locations of order items
+ */
 public interface ApiService<T> {
     /**
-     * Get info from Api
+     * Gets the location info from Api
      * @param id
      * @throws ApiServiceException
      */

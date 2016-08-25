@@ -9,6 +9,12 @@ import java.util.*;
  * Datum: 25-8-2016
  * Time: 02:23
  */
+
+/**
+ * This class is a Buffer<Order> implementation that makes use of a list containing orders
+ * so it can buffer as many orders
+ * Its messages are buffered temporarily using Timertasks.
+ */
 public class OrderBuffer implements Buffer<Order> {
     private long duration;
     private boolean allowRetrieval;

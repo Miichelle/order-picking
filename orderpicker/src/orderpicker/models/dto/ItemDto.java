@@ -7,7 +7,10 @@ import orderpicker.models.domain.Location;
  * Datum: 9-8-2016
  * Time: 00:51
  */
-//TODO: Dto voor seperation of concerns. model -> puur om code intern te houden, Order voor enkel wat naar buiten moet
+
+/**
+ * This DTO class represents an item
+ */
 public class ItemDto {
     private int productId;
     private int amount;
@@ -44,14 +47,5 @@ public class ItemDto {
     }
     public void setProductId(int productId) {
         this.productId = productId;
-    }
-
-    @Override
-    public String toString() {
-        return "ItemDto{" +
-                "productId=" + productId +
-                ", amount=" + amount +
-                ", location=" + location +
-                '}';
     }
 }

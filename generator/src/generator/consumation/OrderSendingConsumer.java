@@ -12,7 +12,10 @@ import org.apache.log4j.Logger;
  * Datum: 12-8-2016
  * Time: 22:30
  */
-//todo generator genereert, consumer pickt dat op en stuurt door naar 3 partij ( = sender in dit geval)
+
+/**
+ * This class consumes the orders that will be send
+ */
 public class OrderSendingConsumer implements Consumer<Order> {
     private final Logger logger = Logger.getLogger(OrderSendingConsumer.class);
 
@@ -29,7 +32,6 @@ public class OrderSendingConsumer implements Consumer<Order> {
        try {
             this.sender.send(dto);
         } catch (SenderException e) {
-            // do something
             logger.error("Something went wrong while consuming an order");
         }
     }

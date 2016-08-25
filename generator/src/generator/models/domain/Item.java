@@ -5,6 +5,10 @@ package generator.models.domain;
  * Datum: 3-8-2016
  * Time: 17:22
  */
+
+/**
+ * This class represents an item
+ */
 public class Item {
     private int productid;
     private int amount;
@@ -17,7 +21,6 @@ public class Item {
     public int getAmount() {
         return this.amount;
     }
-
     public int getProductid() {
         return this.productid;
     }
@@ -25,16 +28,7 @@ public class Item {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
     public void setProductid(int productid) {
         this.productid = productid;
-    }
-
-    @Override
-    public String toString() {
-        return "Item{   " +
-                "productid=" + productid +
-                ", amount=" + amount +
-                '}';
     }
 }

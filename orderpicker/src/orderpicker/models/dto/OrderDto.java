@@ -8,6 +8,10 @@ import java.util.List;
  * Datum: 9-8-2016
  * Time: 00:47
  */
+
+/**
+ * This class represents an order
+ */
 public class OrderDto {
     private int customerId;
     private List<ItemDto> items;
@@ -55,16 +59,5 @@ public class OrderDto {
     }
     public void setTimestamp(LocalDateTime timestamp) {
         this.timestamp = timestamp;
-    }
-
-    @Override
-    public String toString() {
-        return "OrderDto{" +
-                "customerId=" + customerId +
-                ", items=" + items +
-                ", orderId=" + orderId +
-                ", price=" + price +
-                ", timestamp=" + timestamp +
-                '}';
     }
 }

@@ -13,17 +13,21 @@ import java.util.Random;
  * Datum: 18-8-2016
  * Time: 16:06
  */
+
+/**
+ * This strategy provides a group optimalization: it buffers orders and groups them randomly
+ */
 public class GroupOptimalization implements Optimalization {
     private Buffer<Order> orderBuffer;
     private Random random;
 
-    public GroupOptimalization(long duration) {
-        this.orderBuffer = new OrderBuffer(duration);
+    public GroupOptimalization(long orderBufferTimer) {
+        this.orderBuffer = new OrderBuffer(orderBufferTimer);
         random = new Random();
     }
 
     @Override
-    public List<Order> apply(Order order) {
+    public List<Order> optimize(Order order) {
         orderBuffer.buffer(order);
 
         List<Order> orders = orderBuffer.getBufferedItems();
