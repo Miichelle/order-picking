@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
  * Datum: 12-8-2016
  * Time: 22:30
  */
+//todo: der komt iets binnen van de queue, de consumer consumed dat en stuurt door naar 3e partij( in dit geval orderpicker)
 public class OrderSendingConsumer implements Consumer<Order> {
     private final Logger logger = Logger.getLogger(OrderSendingConsumer.class);
 

@@ -8,7 +8,7 @@ import orderpicker.consumation.Consumer;
 import orderpicker.consumation.OrderSendingConsumer;
 import orderpicker.models.domain.Order;
 import orderpicker.models.dto.OrderDto;
-import orderpicker.optimalization.SingleOptimalization;
+import orderpicker.optimalization.NoOptimalization;
 import orderpicker.orderpicking.OrderPicker;
 import orderpicker.receiving.ReceiverException;
 import org.apache.log4j.Logger;
@@ -30,10 +30,11 @@ public class OrderpickerTest {
         //TODO beter naam verzinnen
         final long cleanCacheTimer =  2000000000;
         final long locationTimer = 10000;
+        final long orderGroupingTimer = 5000;
 
         final AMQPSender<OrderDto> sender = new RabbitMQOrderSender("localhost", "orderpicker.sender.queue");
         final Consumer<Order> consumer = new OrderSendingConsumer(sender);
-        final OrderPicker orderPicker = new OrderPicker(new SingleOptimalization(consumer),cleanCacheTimer,locationTimer);
+        final OrderPicker orderPicker = new OrderPicker(consumer,new NoOptimalization(),cleanCacheTimer);
         final RabbitMQOrderReceiver receiver = new RabbitMQOrderReceiver("localhost", "generator.sender.queue", orderPicker);
 
 

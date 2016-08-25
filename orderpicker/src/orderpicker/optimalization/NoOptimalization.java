@@ -1,9 +1,8 @@
 package orderpicker.optimalization;
 
-import orderpicker.consumation.Consumer;
-import orderpicker.models.domain.Item;
 import orderpicker.models.domain.Order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,22 +11,11 @@ import java.util.List;
  * Time: 16:07
  */
 public class NoOptimalization implements Optimalization {
-    private Consumer<Order> consumer;
-
-    public NoOptimalization(orderpicker.consumation.Consumer<Order> consumer) {
-        this.consumer = consumer;
-    }
-
+    //TODO: IN LOGGER MEEGEVEN WELKE OPTIMALISATIE ( NO SINGLE GROUP)
     @Override
-    public void apply(List<Order> orders) {
-        for (Order order : orders) {
-            for (Item item : order.getItems()) {
-                   //TODO: via cache locatie ophalen
-                /*if(this.locationCache.isCached(item.getProductId())){
-                    item.setLocation(locationCache.get(item.getProductId()));
-                }*/
-            }
-            this.consumer.consume(order);
-        }
+    public List<Order> apply(Order order) {
+        List<Order> orders = new ArrayList<>();
+        orders.add(order);
+        return orders;
     }
 }

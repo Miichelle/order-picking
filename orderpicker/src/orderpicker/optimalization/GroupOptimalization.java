@@ -1,11 +1,12 @@
 package orderpicker.optimalization;
 
-import orderpicker.consumation.Consumer;
-import orderpicker.models.domain.Item;
-import orderpicker.models.domain.Location;
+import orderpicker.buffer.Buffer;
+import orderpicker.buffer.OrderBuffer;
 import orderpicker.models.domain.Order;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Michelle Beckers
@@ -13,20 +14,34 @@ import java.util.List;
  * Time: 16:06
  */
 public class GroupOptimalization implements Optimalization {
-    private Location location;
-    private Consumer<Order> consumer;
+    private Buffer<Order> orderBuffer;
+    private Random random;
 
-    public GroupOptimalization(Consumer<Order> consumer) {
-        this.consumer = consumer;
+    public GroupOptimalization(long duration) {
+        this.orderBuffer = new OrderBuffer(duration);
+        random = new Random();
     }
 
-
     @Override
-    public void apply(List<Order> orders) {
-        for (Order order : orders) {
-            for (Item item : order.getItems()) {
+    public List<Order> apply(Order order) {
+        orderBuffer.buffer(order);
 
-            }
+        List<Order> orders = orderBuffer.getBufferedItems();
+
+        if (orders.isEmpty()) { return orders; }
+
+        int chosenOrderAmount = random.nextInt(orders.size());
+        List<Order> chosenOrders =  new ArrayList<>();
+
+        for(int i = chosenOrderAmount-1; i >= 0; i--){
+            chosenOrders.add(orders.get(i));
+            orders.remove(i);
         }
+
+        for (Order leftover : orders) {
+            this.orderBuffer.buffer(leftover);
+        }
+
+        return chosenOrders;
     }
 }

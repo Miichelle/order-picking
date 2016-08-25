@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
  * Datum: 12-8-2016
  * Time: 22:30
  */
+//todo generator genereert, consumer pickt dat op en stuurt door naar 3 partij ( = sender in dit geval)
 public class OrderSendingConsumer implements Consumer<Order> {
     private final Logger logger = Logger.getLogger(OrderSendingConsumer.class);
 

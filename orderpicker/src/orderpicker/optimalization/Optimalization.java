@@ -10,5 +10,5 @@ import java.util.List;
  * Time: 16:06
  */
 public interface Optimalization {
-    void apply(List<Order> orders);
+    List<Order> apply(Order order);
 }

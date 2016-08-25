@@ -17,13 +17,10 @@ public class LocationCache implements Cache<Integer, Location> {
     private Map<Integer, Location> locations;
     private Map<Integer, Timer> timers;
 
-    public LocationCache() {
-    }
-
     public LocationCache(long duration) {
+        this.duration = duration;
         this.locations = new HashMap<>();
         this.timers = new HashMap<>();
-        this.duration = duration;
     }
 
     @Override
